@@ -1,0 +1,54 @@
+<!-- src/app/components/testimonials/testimonials.component.html -->
+<section id="testimonials" class="testimonials section-pad">
+  <div class="container">
+
+    <div class="testimonials__header">
+      <span class="section-label">Client Reviews</span>
+      <span class="gold-line"></span>
+      <h2>What NRI Property Owners <br/> Say About CURA</h2>
+      <p>Real testimonials from our clients managing properties in Pune from across the world.</p>
+    </div>
+
+    <!-- Carousel -->
+    <div class="testimonials__carousel">
+      <div class="testimonials__track" [style.transform]="'translateX(-' + (activeIndex * 100 / visibleCount) + '%)'">
+        <div
+          class="testimonials__card card"
+          *ngFor="let t of testimonials"
+        >
+          <div class="testimonials__quote-icon">"</div>
+          <p class="testimonials__text">{{ t.text }}</p>
+          <div class="testimonials__footer">
+            <div class="testimonials__avatar">{{ t.name.charAt(0) }}</div>
+            <div class="testimonials__meta">
+              <strong>{{ t.name }}</strong>
+              <span>{{ t.location }}</span>
+            </div>
+            <div class="testimonials__stars">
+              <span *ngFor="let s of [1,2,3,4,5]">★</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Controls -->
+    <div class="testimonials__controls">
+      <button class="testimonials__arrow" (click)="prev()" [disabled]="activeIndex === 0">
+        ←
+      </button>
+      <div class="testimonials__dots">
+        <button
+          class="testimonials__dot"
+          *ngFor="let t of testimonials; let i = index"
+          [class.active]="i === activeIndex"
+          (click)="goTo(i)"
+        ></button>
+      </div>
+      <button class="testimonials__arrow" (click)="next()" [disabled]="activeIndex >= testimonials.length - visibleCount">
+        →
+      </button>
+    </div>
+
+  </div>
+</section>

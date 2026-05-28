@@ -1,0 +1,68 @@
+<!-- src/app/components/about/about.component.html -->
+ <app-navbar></app-navbar>
+<section id="about" class="about section-pad">
+  <div class="container">
+    <div class="about__layout">
+
+      <!-- Left visual block -->
+      <div class="about__visual">
+        <div class="about__img-stack">
+          <div class="about__img-main">
+            <img src="assets/images/diptymam.jpeg" alt="CURA Office Pune" loading="lazy" onerror="this.style.display='none'" />
+            <div class="about__img-main-fallback">
+              <span>CURA Office</span><br/>
+              <small>Pashan, Pune</small>
+            </div>
+          </div>
+          <div class="about__img-badge">
+            <span class="about__img-badge-num">14+</span>
+            <span class="about__img-badge-txt">Years of Trust</span>
+          </div>
+          <div class="about__img-secondary">
+            <img src="assets/images/Award.jpeg" alt="CURA Team" loading="lazy" onerror="this.style.display='none'" />
+            <div class="about__img-secondary-fallback">CURA Team</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right content -->
+      <div class="about__content">
+        <span class="section-label">About CURA</span>
+        <span class="gold-line"></span>
+        <h2 class="about__title">Pune's Most Trusted Partner for NRI Property Owners</h2>
+        <p class="about__lead">
+          Founded by <strong>Dipty Paranjpe</strong>, CURA NRI Property Services has been the preferred
+          property management company for Non-Resident Indians since 2010 — built on a foundation of
+          transparency, professionalism, and genuine care for every client's investment.
+        </p>
+        <p class="about__body">
+          Managing property from overseas is a challenge most NRIs know well — tenant issues, society
+          disputes, maintenance gaps, and legal complications. CURA was created specifically to eliminate
+          these pain points, giving NRIs in 20+ countries complete confidence that their Pune properties
+          are in expert hands.
+        </p>
+
+        <div class="about__values">
+          <div class="about__value-item" *ngFor="let v of values">
+            <div class="about__value-icon">{{ v.icon }}</div>
+            <div>
+              <strong>{{ v.title }}</strong>
+              <p>{{ v.desc }}</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="about__actions">
+          <a href="#inquiry" class="btn-primary">Work With CURA →</a>
+          <a href="#testimonials" class="about__reviews-link">
+            <div class="about__star-row">
+              <span *ngFor="let s of [1,2,3,4,5]">⭐</span>
+            </div>
+            <span>100+ verified reviews</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

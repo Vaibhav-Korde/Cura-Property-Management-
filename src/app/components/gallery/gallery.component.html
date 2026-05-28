@@ -1,0 +1,57 @@
+<!-- src/app/components/gallery/gallery.component.html -->
+<section id="gallery" class="gallery section-pad">
+  <div class="container">
+
+    <div class="gallery__header">
+      <span class="section-label">Gallery</span>
+      <span class="gold-line"></span>
+      <h2>14+ Years of Excellence <br/> Documented</h2>
+      <p>Awards, recognitions, magazine features, and milestones from over a decade of serving NRIs.</p>
+    </div>
+
+    <!-- Tab Filter -->
+    <div class="gallery__tabs">
+      <button
+        class="gallery__tab"
+        *ngFor="let tab of tabs"
+        [class.active]="activeTab === tab.key"
+        (click)="setTab(tab.key)"
+      >
+        {{ tab.label }}
+      </button>
+    </div>
+
+    <!-- Grid -->
+    <div class="gallery__grid">
+      <div
+        class="gallery__item"
+        *ngFor="let item of filteredItems"
+        (click)="openLightbox(item)"
+      >
+        <div class="gallery__item-inner">
+          <div class="gallery__item-bg" [style.background]="item.color"></div>
+          <div class="gallery__item-overlay">
+            <span class="gallery__item-icon">{{ item.icon }}</span>
+            <span class="gallery__item-label">{{ item.label }}</span>
+            <span class="gallery__item-zoom">🔍</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Lightbox -->
+    <div class="gallery__lightbox" *ngIf="lightboxItem" (click)="closeLightbox()">
+      <div class="gallery__lightbox-inner" (click)="$event.stopPropagation()">
+        <button class="gallery__lightbox-close" (click)="closeLightbox()">✕</button>
+        <div class="gallery__lightbox-preview" [style.background]="lightboxItem.color">
+          <span style="font-size:3rem">{{ lightboxItem.icon }}</span>
+        </div>
+        <div class="gallery__lightbox-meta">
+          <strong>{{ lightboxItem.label }}</strong>
+          <span>{{ lightboxItem.year }}</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>

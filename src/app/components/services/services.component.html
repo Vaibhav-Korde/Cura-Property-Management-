@@ -1,0 +1,47 @@
+<!-- src/app/components/services/services.component.html -->
+<section id="services" class="services section-pad">
+  <div class="container">
+
+    <div class="services__header">
+      <span class="section-label">What We Offer</span>
+      <span class="gold-line"></span>
+      <h2>Comprehensive NRI Property <br/> Services in Pune</h2>
+      <p>
+        From finding the right tenant to managing legal formalities — CURA handles
+        everything so you can enjoy complete peace of mind from anywhere in the world.
+      </p>
+    </div>
+
+    <div class="services__grid">
+      <div
+        class="services__card card"
+        *ngFor="let service of servicesList; let i = index"
+        [style.animation-delay]="(i * 0.1) + 's'"
+      >
+        <div class="services__card-icon" [style.background]="service.bgColor">
+          <span>{{ service.icon }}</span>
+        </div>
+        <div class="services__card-body">
+          <h3 class="services__card-title">{{ service.title }}</h3>
+          <p class="services__card-desc">{{ service.description }}</p>
+          <ul class="services__card-features">
+            <li *ngFor="let f of service.features">
+              <span class="services__feature-dot"></span>{{ f }}
+            </li>
+          </ul>
+        </div>
+        <a href="#inquiry" class="services__card-cta">
+          Enquire Now <span>→</span>
+        </a>
+        <div class="services__card-number">{{ (i + 1).toString().padStart(2, '0') }}</div>
+      </div>
+    </div>
+
+    <!-- Bottom CTA -->
+    <div class="services__bottom-cta">
+      <p>Need a service not listed here? We handle all property-related requirements.</p>
+      <a href="#inquiry" class="btn-primary">Discuss Your Requirements →</a>
+    </div>
+
+  </div>
+</section>

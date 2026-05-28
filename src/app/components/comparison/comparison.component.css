@@ -1,0 +1,146 @@
+.comparison{
+  background: #f7f4f1;
+  padding: 100px 0;
+}
+
+.container{
+  width: min(1200px, 92%);
+  margin: auto;
+}
+
+/* =========================
+   Heading
+========================= */
+
+.comparison__heading{
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.comparison__heading span{
+  display: inline-block;
+  color: #c9a24a;
+  letter-spacing: 4px;
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+
+.comparison__heading h2{
+  font-size: 54px;
+  line-height: 1.2;
+  color: #071a2c;
+  margin-bottom: 18px;
+  font-family: "Playfair Display", serif;
+}
+
+.comparison__heading p{
+  max-width: 720px;
+  margin: auto;
+  font-size: 17px;
+  color: #5f6470;
+  line-height: 1.8;
+}
+
+/* =========================
+   Table
+========================= */
+
+.comparison__table-wrap{
+  overflow-x: auto;
+  border-radius: 28px;
+  box-shadow: 0 15px 50px rgba(0,0,0,0.06);
+}
+
+.comparison__table{
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  min-width: 850px;
+}
+
+/* Header */
+
+.comparison__table thead{
+  background: linear-gradient(90deg,#8b2c7d,#9f3b8e);
+}
+
+.comparison__table th{
+  color: #fff;
+  text-align: left;
+  padding: 24px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+/* Body */
+
+.comparison__table td{
+  padding: 22px 24px;
+  border-bottom: 1px solid #ececec;
+  font-size: 16px;
+  color: #1d2433;
+}
+
+.comparison__table tbody tr{
+  transition: 0.3s ease;
+}
+
+.comparison__table tbody tr:hover{
+  background: #faf7ff;
+}
+
+/* Icons */
+
+.yes{
+  text-align: center;
+  color: #6c3cf0 !important;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.no{
+  text-align: center;
+  color:  #ff3b3b !important;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+/* =========================
+   Mobile
+========================= */
+
+@media(max-width: 992px){
+
+  .comparison{
+    padding: 70px 0;
+  }
+
+  .comparison__heading h2{
+    font-size: 40px;
+  }
+
+}
+
+@media(max-width: 768px){
+
+  .comparison__heading h2{
+    font-size: 32px;
+  }
+
+  .comparison__heading p{
+    font-size: 15px;
+  }
+
+  .comparison__table th,
+  .comparison__table td{
+    padding: 16px;
+    font-size: 14px;
+  }
+
+  .yes,
+  .no{
+    font-size: 20px;
+  }
+
+}

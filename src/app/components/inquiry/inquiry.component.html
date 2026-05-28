@@ -1,0 +1,227 @@
+<!-- src/app/components/inquiry/inquiry.component.html -->
+<section id="inquiry" class="inquiry section-pad">
+
+  <div class="inquiry__bg-pattern"></div>
+
+  <div class="container">
+
+    <!-- Section Header -->
+    <div class="inquiry__header">
+      <span class="section-label">Get in Touch</span>
+      <span class="gold-line"></span>
+      <h2 class="inquiry__title">Start Your Property Journey <br /> with CURA Today</h2>
+      <p class="inquiry__subtitle">
+        Fill in the form below and our NRI property expert will reach out within 2 working hours.
+        All consultations are completely free.
+      </p>
+    </div>
+
+    <div class="inquiry__layout">
+
+      <!-- Left – Form -->
+      <div class="inquiry__form-wrapper">
+
+        <!-- Step Indicators -->
+        <div class="inquiry__steps">
+          <div class="inquiry__step" [class.active]="currentStep >= 1" [class.done]="currentStep > 1">
+            <div class="inquiry__step-num">1</div>
+            <span>Personal Info</span>
+          </div>
+          <div class="inquiry__step-line" [class.active]="currentStep > 1"></div>
+          <div class="inquiry__step" [class.active]="currentStep >= 2" [class.done]="currentStep > 2">
+            <div class="inquiry__step-num">2</div>
+            <span>Property Details</span>
+          </div>
+          <div class="inquiry__step-line" [class.active]="currentStep > 2"></div>
+          <div class="inquiry__step" [class.active]="currentStep >= 3">
+            <div class="inquiry__step-num">3</div>
+            <span>Your Message</span>
+          </div>
+        </div>
+
+        <form class="inquiry__form" (ngSubmit)="onSubmit()" [formGroup]="inquiryForm" novalidate>
+
+          <!-- Step 1: Personal Info -->
+          <div class="inquiry__step-panel" *ngIf="currentStep === 1">
+            <div class="inquiry__form-grid">
+              <div class="form-group">
+                <label for="fullName">Full Name *</label>
+                <input id="fullName" type="text" class="form-control" [class.error]="isFieldInvalid('fullName')"
+                  placeholder="e.g. Ramesh Sharma" formControlName="fullName" />
+                <span class="field-error" *ngIf="isFieldInvalid('fullName')">Full name is required</span>
+              </div>
+              <div class="form-group">
+                <label for="email">Email Address *</label>
+                <input id="email" type="email" class="form-control" [class.error]="isFieldInvalid('email')"
+                  placeholder="you@example.com" formControlName="email" />
+                <span class="field-error" *ngIf="isFieldInvalid('email')">Valid email is required</span>
+              </div>
+              <div class="form-group">
+                <label for="phone">Phone / WhatsApp *</label>
+                <input id="phone" type="tel" class="form-control" [class.error]="isFieldInvalid('phone')"
+                  placeholder="+1 234 567 8900" formControlName="phone" />
+                <span class="field-error" *ngIf="isFieldInvalid('phone')">Phone number is required</span>
+              </div>
+              <div class="form-group">
+                <label for="country">Country of Residence *</label>
+                <select id="country" class="form-control" formControlName="country">
+                  <option value="" disabled>Select your country</option>
+                  <option *ngFor="let c of countries" [value]="c">{{ c }}</option>
+                </select>
+              </div>
+            </div>
+            <button type="button" class="btn-primary inquiry__next-btn" (click)="nextStep()">
+              Continue to Property Details →
+            </button>
+          </div>
+
+          <!-- Step 2: Property Details -->
+          <div class="inquiry__step-panel" *ngIf="currentStep === 2">
+            <div class="inquiry__form-grid">
+              <div class="form-group">
+                <label>Service Required *</label>
+                <div class="inquiry__service-grid">
+                  <button type="button" class="inquiry__service-btn" *ngFor="let s of services"
+                    [class.selected]="inquiryForm.get('serviceType')?.value === s.value"
+                    (click)="selectService(s.value)">
+                    <span class="inquiry__service-icon">{{ s.icon }}</span>
+                    <span class="inquiry__service-label">{{ s.label }}</span>
+                  </button>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="propertyType">Property Type *</label>
+                <select id="propertyType" class="form-control" formControlName="propertyType">
+                  <option value="" disabled>Select property type</option>
+                  <option value="apartment">Apartment / Flat</option>
+                  <option value="villa">Villa</option>
+                  <option value="bungalow">Bungalow / Row House</option>
+                  <option value="plot">Plot / Land</option>
+                  <option value="commercial">Commercial Property</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+              <div class="form-group inquiry__full-width">
+
+                <label for="propertyLocation">
+                  Property Location in Pune *
+                </label>
+
+                <div class="location-wrapper">
+
+                  <input id="propertyLocation" type="text" class="form-control"
+                    placeholder="e.g. Wakad, Hinjewadi, Baner, Kothrud..." formControlName="propertyLocation"
+                    (input)="searchLocation()" autocomplete="off" />
+
+                  <div class="suggestion-box" *ngIf="locations.length > 0">
+
+                    <div class="suggestion-item" *ngFor="let item of locations" (click)="selectLocation(item)">
+                      {{ item.display_name }}
+                    </div>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+            <div class="inquiry__nav-btns">
+              <button type="button" class="btn-outline-dark" (click)="prevStep()">← Back</button>
+              <button type="button" class="btn-primary" (click)="nextStep()">Continue →</button>
+            </div>
+          </div>
+
+          <!-- Step 3: Message -->
+          <div class="inquiry__step-panel" *ngIf="currentStep === 3">
+            <div class="form-group">
+              <label for="message">Tell Us More About Your Requirements</label>
+              <textarea id="message" class="form-control" rows="6"
+                placeholder="Describe your property, the service you need, any special requirements or questions you have..."
+                formControlName="message"></textarea>
+            </div>
+            <div class="inquiry__consent">
+              <input type="checkbox" id="consent" formControlName="consent" />
+              <label for="consent">
+                I agree to CURA's <a href="/privacy" target="_blank">Privacy Policy</a> and consent to being contacted.
+              </label>
+            </div>
+            <div class="inquiry__nav-btns">
+              <button type="button" class="btn-outline-dark" (click)="prevStep()">← Back</button>
+              <button type="submit" class="btn-primary inquiry__submit-btn" [disabled]="isSubmitting">
+                <span *ngIf="!isSubmitting">
+                  🚀 Submit Inquiry
+                </span>
+                <span *ngIf="isSubmitting" class="inquiry__spinner">
+                  Sending...
+                </span>
+              </button>
+            </div>
+          </div>
+
+        </form>
+
+        <!-- Success State -->
+        <div class="inquiry__success" *ngIf="isSuccess">
+          <div class="inquiry__success-icon">✅</div>
+          <h3>Inquiry Submitted Successfully!</h3>
+          <p>Thank you, <strong>{{ submittedName }}</strong>! Our NRI property expert will contact you within 2 working
+            hours.</p>
+          <p class="inquiry__success-ref">Reference ID: <strong>{{ referenceId }}</strong></p>
+          <button class="btn-primary" (click)="resetForm()">Submit Another Inquiry</button>
+        </div>
+
+      </div>
+
+      <!-- Right – Info Sidebar -->
+      <aside class="inquiry__sidebar">
+
+        <div class="inquiry__sidebar-card">
+          <h4>Why Choose CURA?</h4>
+          <ul class="inquiry__sidebar-list">
+            <li *ngFor="let item of whyItems">
+              <span class="inquiry__sidebar-check">✓</span>
+              {{ item }}
+            </li>
+          </ul>
+        </div>
+
+        <div class="inquiry__contact-card">
+          <h4>Direct Contact</h4>
+          <a href="https://wa.me/+918149021922" target="_blank" class="inquiry__contact-item inquiry__contact-wa">
+            <div class="inquiry__contact-icon">💬</div>
+            <div>
+              <strong>WhatsApp Chat</strong>
+              <span>+91 81490 21922</span>
+            </div>
+          </a>
+          <a href="tel:+918149021922" class="inquiry__contact-item">
+            <div class="inquiry__contact-icon">📞</div>
+            <div>
+              <strong>Call Us</strong>
+              <span>+91 81490 21922</span>
+            </div>
+          </a>
+          <a href="mailto:info@mycuraservices.com" class="inquiry__contact-item">
+            <div class="inquiry__contact-icon">✉️</div>
+            <div>
+              <strong>Email Us</strong>
+              <span>info&#64;mycuraservices.com</span>
+            </div>
+          </a>
+        </div>
+
+        <div class="inquiry__office-card">
+          <h4>Visit Our Office</h4>
+          <p>
+            Office 406 & 407, Montvert Velocity,<br />
+            Baner Pashan Link Road,<br />
+            Pashan, Pune 411021<br />
+            Maharashtra, India
+          </p>
+        </div>
+
+      </aside>
+    </div>
+  </div>
+</section>

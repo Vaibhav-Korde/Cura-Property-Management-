@@ -1,0 +1,117 @@
+<!-- src/app/components/hero/hero.component.html -->
+<section id="hero" class="hero">
+
+  <!-- Background layers -->
+  <div class="hero__bg">
+    <div class="hero__bg-overlay"></div>
+    <div class="hero__bg-grain"></div>
+    <div class="hero__geometric hero__geometric--1"></div>
+    <div class="hero__geometric hero__geometric--2"></div>
+    <div class="hero__geometric hero__geometric--3"></div>
+  </div>
+
+  <div class="container hero__container">
+    <!-- Content -->
+    <div class="hero__content">
+      <span class="hero__badge">
+        <span class="hero__badge-dot"></span>
+        15+ Years of Trusted Excellence
+      </span>
+
+      <h1 class="hero__title">
+        Your Pune Property,
+        <span class="hero__title-gold">Expertly Managed</span>
+        for NRIs Worldwide
+      </h1>
+
+      <p class="hero__subtitle">
+        CURA is Pune's most trusted NRI property management company — delivering
+        complete peace of mind whether you're in the USA, Canada, UAE, UK, or Australia.
+      </p>
+
+      <div class="hero__actions">
+        <a href="#inquiry" class="btn-primary hero__btn-primary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+          </svg>
+          Start Your Property Journey
+        </a>
+        <a href="https://youtu.be/mZlpBF1tICQ" target="_blank" class="hero__play-btn">
+          <div class="hero__play-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <polygon points="5 3 19 12 5 21 5 3"></polygon>
+            </svg>
+          </div>
+          Watch Our Story
+        </a>
+      </div>
+
+      <!-- Trust Badges -->
+      <div class="hero__trust">
+        <div class="hero__trust-item" *ngFor="let badge of trustBadges">
+          <span class="hero__trust-icon">{{ badge.icon }}</span>
+          <span class="hero__trust-text">{{ badge.text }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Panel -->
+
+    <!-- Right Property Image -->
+<div class="hero__property">
+  <div class="hero__property-wrapper">
+    <img
+      src="assets/images/property-hero.jpg"
+      alt="Luxury Property"
+      class="hero__property-img"/>
+  </div>
+</div>
+
+    <!--<div class="hero__panel">
+      <div class="hero__panel-card">
+        <div class="hero__panel-header">
+          <span class="hero__panel-title">Quick Inquiry</span>
+          <span class="hero__panel-subtitle">We respond within 2 hours</span>
+        </div>
+        <div class="hero__panel-form">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Your full name"
+            [(ngModel)]="quickForm.name"
+          />
+          <input
+            type="email"
+            class="form-control"
+            placeholder="Email address"
+            [(ngModel)]="quickForm.email"
+          />
+          <input
+            type="tel"
+            class="form-control"
+            placeholder="WhatsApp / Phone"
+            [(ngModel)]="quickForm.phone"
+          />
+          <select class="form-control" [(ngModel)]="quickForm.service">
+            <option value="" disabled>Select a service</option>
+            <option value="property-management">Property Management</option>
+            <option value="tenant-search">Tenant Search</option>
+            <option value="inspection">Property Inspection</option>
+            <option value="renovation">Renovation & Restoration</option>
+            <option value="sale">Property Sale</option>
+          </select>
+          <button class="btn-primary hero__panel-submit" (click)="submitQuickInquiry()">
+            Send Inquiry →
+          </button>
+        </div>
+        <p class="hero__panel-note">🔒 Your information is 100% confidential</p>
+      </div>
+    </div>-->
+  </div>
+
+  <!-- Scroll Indicator -->
+  <div class="hero__scroll">
+    <span class="hero__scroll-text">Scroll to explore</span>
+    <div class="hero__scroll-line"></div>
+  </div>
+</section>

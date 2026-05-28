@@ -1,0 +1,19 @@
+<!-- src/app/components/stats/stats.component.html -->
+<section id="stats" class="stats">
+  <div class="stats__bg">
+    <div class="stats__bg-glow stats__bg-glow--1"></div>
+    <div class="stats__bg-glow stats__bg-glow--2"></div>
+  </div>
+  <div class="container stats__container">
+    <div class="stats__grid">
+      <div class="stats__item" *ngFor="let stat of stats">
+        <div class="stats__icon">{{ stat.icon }}</div>
+        <div class="stats__value">
+          <span class="stats__number" [attr.data-target]="stat.value">{{ stat.display }}</span>
+        </div>
+        <div class="stats__label">{{ stat.label }}</div>
+        <div class="stats__sub">{{ stat.sub }}</div>
+      </div>
+    </div>
+  </div>
+</section>
