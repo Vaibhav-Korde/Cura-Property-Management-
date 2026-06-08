@@ -1,6 +1,7 @@
 // src/app/components/services/services.component.ts
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from "@angular/router";
 
 interface Service {
   icon: string;
@@ -18,6 +19,15 @@ interface Service {
   styleUrls: ['./services.component.css'],
 })
 export class ServicesComponent {
+  
+  
+  scrollToInquiry() {
+  document.getElementById('inquiry')?.scrollIntoView({
+  behavior: 'smooth'
+  });
+}
+
+
   servicesList: Service[] = [
     {
       icon: '🏘',

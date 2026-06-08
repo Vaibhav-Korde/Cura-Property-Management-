@@ -1,6 +1,4 @@
-// src/app/components/inquiry/inquiry.component.ts
-
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   ReactiveFormsModule,
@@ -28,6 +26,9 @@ interface ServiceOption {
 })
 export class InquiryComponent implements OnInit {
 
+  // ADD THIS
+  @Output() closeForm = new EventEmitter<void>();
+
   inquiryForm!: FormGroup;
 
   currentStep = 1;
@@ -40,7 +41,6 @@ export class InquiryComponent implements OnInit {
 
   referenceId = '';
 
-  // LOCATION AUTOCOMPLETE
   locations: any[] = [];
 
   latitude: any;
@@ -167,7 +167,11 @@ export class InquiryComponent implements OnInit {
     });
   }
 
-  // LOCATION SEARCH
+  // ADD THIS METHOD
+  closePopup(): void {
+    this.closeForm.emit();
+  }
+
   searchLocation(): void {
 
     const query =
@@ -188,7 +192,6 @@ export class InquiryComponent implements OnInit {
       });
   }
 
-  // SELECT LOCATION
   selectLocation(location: any): void {
 
     this.inquiryForm.patchValue({

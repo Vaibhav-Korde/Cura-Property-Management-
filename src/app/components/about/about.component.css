@@ -1,6 +1,8 @@
 /* src/app/components/about/about.component.css */
 
-.about { background: var(--cream); }
+.about { 
+  padding: 0px;
+  background: var(--cream); }
 
 /* ── Layout ── */
 .about__layout {

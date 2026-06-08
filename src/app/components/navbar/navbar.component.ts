@@ -1,7 +1,10 @@
 // src/app/components/navbar/navbar.component.ts
 import { Component, HostListener, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+
+
+
 
 @Component({
   selector: 'app-navbar',
@@ -11,10 +14,13 @@ import { RouterModule } from '@angular/router';
   styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent implements OnInit {
-  isScrolled = false;
-  menuOpen   = false;
 
-  ngOnInit(): void {}
+  constructor(private router: Router) { }
+
+  isScrolled = false;
+  menuOpen = false;
+
+  ngOnInit(): void { }
 
   @HostListener('window:scroll')
   onWindowScroll(): void {
@@ -22,5 +28,42 @@ export class NavbarComponent implements OnInit {
   }
 
   toggleMenu(): void { this.menuOpen = !this.menuOpen; }
-  closeMenu():  void { this.menuOpen = false; }
+  closeMenu(): void { this.menuOpen = false; }
+
+  scrollToSection(sectionId: string): void {
+
+    const element = document.getElementById(sectionId);
+
+    if (element) {
+
+      element.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+
+    }
+  }
+
+  scrollToInquiry(): void {
+
+    if (this.router.url !== '/') {
+
+      this.router.navigate(['/']).then(() => {
+
+        setTimeout(() => {
+          document.getElementById('inquiry')?.scrollIntoView({
+            behavior: 'smooth'
+          });
+        }, 300);
+
+      });
+
+    } else {
+
+      document.getElementById('inquiry')?.scrollIntoView({
+        behavior: 'smooth'
+      });
+
+    }
+  }
 }

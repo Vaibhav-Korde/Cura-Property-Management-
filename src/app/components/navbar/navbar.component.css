@@ -213,3 +213,42 @@
   .navbar__topbar-inner { flex-direction: column; gap: 6px; }
   .navbar__contact-links { flex-direction: column; gap: 4px; align-items: center; }
 }
+
+.access-studio-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 20px;
+}
+
+.access-studio-link {
+  text-decoration: none;
+  color: #374151; /* Same color as other menu items */
+  font-size: 15px;
+  font-weight: 400;
+  transition: color 0.3s ease;
+  margin: -20px;
+}
+
+.access-studio-link:hover {
+  color: #1f2937;
+}
+
+.new-badge {
+  color: red;
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: px;
+  animation: blink 1s infinite;
+  letter-spacing: 2px;
+}
+
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.2;
+  }
+}

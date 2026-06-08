@@ -30,7 +30,8 @@
             </li>
           </ul>
         </div>
-        <a href="#inquiry" class="services__card-cta">
+        <!-- <button> Enquire Now <span>→</span></button> -->
+        <a (click)="scrollToInquiry()" class="services__card-cta">
           Enquire Now <span>→</span>
         </a>
         <div class="services__card-number">{{ (i + 1).toString().padStart(2, '0') }}</div>
@@ -40,7 +41,7 @@
     <!-- Bottom CTA -->
     <div class="services__bottom-cta">
       <p>Need a service not listed here? We handle all property-related requirements.</p>
-      <a href="#inquiry" class="btn-primary">Discuss Your Requirements →</a>
+      <a (click)="scrollToInquiry()"  class="btn-primary">Discuss Your Requirements →</a>
     </div>
 
   </div>

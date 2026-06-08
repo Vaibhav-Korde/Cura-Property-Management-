@@ -19,4 +19,10 @@ export class AboutComponent {
     { icon: '⚖️', title: 'Legal Compliance',         desc: 'All rent agreements, society work and documentation fully compliant.' },
     { icon: '🌐', title: 'NRI-Focused Approach',     desc: 'Time zone aware, WhatsApp-friendly, and built for overseas clients.' },
   ];
+
+  scrollToInquiry(): void {
+  document.getElementById('inquiry')?.scrollIntoView({
+    behavior: 'smooth'
+  });
+}
 }

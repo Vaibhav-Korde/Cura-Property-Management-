@@ -1,27 +1,25 @@
 import { Routes } from '@angular/router';
-import { AboutComponent } from './components/about/about.component';
-import { PropertyManagementComponent } from './pages/property-management/property-management.component';
-import { TestComponent } from './pages/test/test.component';
+import { HomeComponent } from './home/home.component';
+import { PropertyManagementComponent } from './pages/property-management/PropertyManagementComponent';
+
 
 export const routes: Routes = [
 
-   {
+  //  {
+  //   path: '',
+  //   redirectTo: 'about',
+  //   pathMatch: 'full'
+  // },
+  {
+    path: 'home',
+    component: HomeComponent
+  },
+  {
     path: '',
-    redirectTo: 'about',
-    pathMatch: 'full'
+    component: HomeComponent
   },
   {
     path: 'property-management',
     component: PropertyManagementComponent
-  },
-
- {
-    path: 'test',
-    component: TestComponent
-  },
-  {
-    path: 'about',
-    component: AboutComponent
   }
-
 ];

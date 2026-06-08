@@ -12,7 +12,7 @@ import { GalleryComponent } from './components/gallery/gallery.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ComparisonComponent } from './components/comparison/comparison.component';
 import { RouterModule, RouterOutlet } from "@angular/router";
-import { PropertyManagementComponent } from "./pages/property-management/property-management.component";
+import { PropertyManagementComponent } from './pages/property-management/PropertyManagementComponent';
 import { TestComponent } from "./pages/test/test.component";
 
 @Component({
@@ -20,20 +20,8 @@ import { TestComponent } from "./pages/test/test.component";
   standalone: true,
   imports: [
     CommonModule,
-    NavbarComponent,
-    RouterOutlet,
-    HeroComponent,
-    ServicesComponent,
-    ComparisonComponent,
-    AboutComponent,
-    StatsComponent,
-    TestimonialsComponent,
-    InquiryComponent,
-    GalleryComponent,
-    FooterComponent,
     RouterModule,
-    PropertyManagementComponent,
-    TestComponent
+   
 ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
