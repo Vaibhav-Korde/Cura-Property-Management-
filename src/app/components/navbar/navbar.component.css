@@ -108,7 +108,7 @@
   align-items: center;
   gap: 4px;
   padding: 8px 14px;
-  font-size: 0.88rem;
+  font-size: 0.90rem;
   font-weight: 500;
   color: var(--text-body);
   border-radius: 8px;
@@ -214,7 +214,7 @@
   .navbar__contact-links { flex-direction: column; gap: 4px; align-items: center; }
 }
 
-.access-studio-wrapper {
+/* .access-studio-wrapper {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -224,7 +224,7 @@
 
 .access-studio-link {
   text-decoration: none;
-  color: #374151; /* Same color as other menu items */
+  color: #374151;  Same color as other menu items
   font-size: 15px;
   font-weight: 400;
   transition: color 0.3s ease;
@@ -251,4 +251,40 @@
   50% {
     opacity: 0.2;
   }
+} */
+
+.access-studio {
+  position: relative;
+}
+
+.access-studio a {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 14px;
+  font-size: 0.90rem;
+  font-weight: 500;
+  color: var(--text-body);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: var(--transition);
+ }
+ .access-studio a:hover { color: var(--navy); background: var(--cream-dark); }
+
+.coming-soon {
+  position: absolute;
+  top: -12px;
+  right: -5px;
+  background: #ff3b30;
+  color: #fff;
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 10px;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
 }
