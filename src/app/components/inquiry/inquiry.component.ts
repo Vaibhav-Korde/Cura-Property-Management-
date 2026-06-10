@@ -9,7 +9,6 @@ import {
 
 import { InquiryService } from '../../services/inquiry.service';
 import { Inquiry } from '../../models/inquiry.model';
-import { LocationService } from '../../services/location.service';
 
 interface ServiceOption {
   value: string;
@@ -26,26 +25,15 @@ interface ServiceOption {
 })
 export class InquiryComponent implements OnInit {
 
-  // ADD THIS
   @Output() closeForm = new EventEmitter<void>();
 
   inquiryForm!: FormGroup;
 
   currentStep = 1;
-
   isSubmitting = false;
-
   isSuccess = false;
-
   submittedName = '';
-
   referenceId = '';
-
-  locations: any[] = [];
-
-  latitude: any;
-
-  longitude: any;
 
   countries = [
     'USA',
@@ -112,14 +100,11 @@ export class InquiryComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private inquiryService: InquiryService,
-    private locationService: LocationService
+    private inquiryService: InquiryService
   ) {}
 
   ngOnInit(): void {
-
     this.inquiryForm = this.fb.group({
-
       fullName: [
         '',
         [Validators.required, Validators.minLength(2)]
@@ -167,46 +152,11 @@ export class InquiryComponent implements OnInit {
     });
   }
 
-  // ADD THIS METHOD
   closePopup(): void {
     this.closeForm.emit();
   }
 
-  searchLocation(): void {
-
-    const query =
-      this.inquiryForm.get('propertyLocation')?.value;
-
-    if (!query || query.length < 3) {
-
-      this.locations = [];
-
-      return;
-    }
-
-    this.locationService
-      .searchLocation(query)
-      .subscribe((data: any) => {
-
-        this.locations = data;
-      });
-  }
-
-  selectLocation(location: any): void {
-
-    this.inquiryForm.patchValue({
-      propertyLocation: location.display_name
-    });
-
-    this.latitude = location.lat;
-
-    this.longitude = location.lon;
-
-    this.locations = [];
-  }
-
   isFieldInvalid(field: string): boolean {
-
     const ctrl = this.inquiryForm.get(field);
 
     return !!(
@@ -217,14 +167,12 @@ export class InquiryComponent implements OnInit {
   }
 
   selectService(value: string): void {
-
     this.inquiryForm.patchValue({
       serviceType: value
     });
   }
 
   nextStep(): void {
-
     const step1Fields = [
       'fullName',
       'email',
@@ -239,29 +187,25 @@ export class InquiryComponent implements OnInit {
     ];
 
     if (this.currentStep === 1) {
-
       step1Fields.forEach(f =>
         this.inquiryForm.get(f)?.markAsTouched()
       );
 
-      const valid =
-        step1Fields.every(
-          f => this.inquiryForm.get(f)?.valid
-        );
+      const valid = step1Fields.every(
+        f => this.inquiryForm.get(f)?.valid
+      );
 
       if (!valid) return;
     }
 
     if (this.currentStep === 2) {
-
       step2Fields.forEach(f =>
         this.inquiryForm.get(f)?.markAsTouched()
       );
 
-      const valid =
-        step2Fields.every(
-          f => this.inquiryForm.get(f)?.valid
-        );
+      const valid = step2Fields.every(
+        f => this.inquiryForm.get(f)?.valid
+      );
 
       if (!valid) return;
     }
@@ -272,51 +216,36 @@ export class InquiryComponent implements OnInit {
   }
 
   prevStep(): void {
-
     if (this.currentStep > 1) {
       this.currentStep--;
     }
   }
 
   onSubmit(): void {
-
     if (this.inquiryForm.invalid) {
-
       this.inquiryForm.markAllAsTouched();
-
       return;
     }
 
     this.isSubmitting = true;
 
     const payload: Inquiry = {
-
-      ...this.inquiryForm.value,
-
-      latitude: this.latitude,
-
-      longitude: this.longitude
+      ...this.inquiryForm.value
     };
 
     this.inquiryService
       .submitInquiry(payload)
       .subscribe({
-
         next: (res) => {
-
           this.isSubmitting = false;
-
           this.isSuccess = true;
-
           this.submittedName = payload.fullName;
-
           this.referenceId =
             res.referenceId ||
             this.generateRefId();
         },
 
         error: (err) => {
-
           this.isSubmitting = false;
 
           alert(
@@ -328,20 +257,14 @@ export class InquiryComponent implements OnInit {
   }
 
   resetForm(): void {
-
     this.inquiryForm.reset();
-
     this.currentStep = 1;
-
     this.isSuccess = false;
-
     this.submittedName = '';
-
     this.referenceId = '';
   }
 
   private generateRefId(): string {
-
     return (
       'CURA-' +
       Date.now()

@@ -111,15 +111,12 @@
 
                   <input id="propertyLocation" type="text" class="form-control"
                     placeholder="e.g. Wakad, Hinjewadi, Baner, Kothrud..." formControlName="propertyLocation"
-                    (input)="searchLocation()" autocomplete="off" />
+                    autocomplete="off" />
 
-                  <div class="suggestion-box" *ngIf="locations.length > 0">
-
-                    <div class="suggestion-item" *ngFor="let item of locations" (click)="selectLocation(item)">
-                      {{ item.display_name }}
+                  <!-- <div class="suggestion-box">
+                    <div class="suggestion-item">
                     </div>
-
-                  </div>
+                  </div> -->
 
                 </div>
 
