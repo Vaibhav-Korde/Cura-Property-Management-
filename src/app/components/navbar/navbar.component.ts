@@ -44,6 +44,31 @@ export class NavbarComponent implements OnInit {
     }
   }
 
+  navigateToSection(sectionId: string): void {
+
+    if (this.router.url !== '/') {
+
+      this.router.navigate(['/']).then(() => {
+
+        setTimeout(() => {
+          document.getElementById(sectionId)?.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }, 300);
+
+      });
+
+    } else {
+
+      document.getElementById(sectionId)?.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+
+    }
+  }
+
   scrollToInquiry(): void {
 
     if (this.router.url !== '/') {
@@ -67,3 +92,5 @@ export class NavbarComponent implements OnInit {
     }
   }
 }
+
+
